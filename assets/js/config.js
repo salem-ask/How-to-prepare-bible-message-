@@ -6,19 +6,24 @@
    ===================================================================== */
 
 window.FUNNEL_CONFIG = {
-  /* Where every "Get the book" button sends the visitor (Chariow checkout).
+  /* Where every "Get the book" button sends the visitor (checkout page).
      To send people to the product page instead, remove "/checkout". */
   checkoutUrl: "https://livresenligne.mychariow.shop/prd_dlcz1mir/checkout",
 
-  /* Prices shown on the page. Keep them identical to the prices on Chariow. */
-  price: "15,000 CDF",
-  oldPrice: "25,000 CDF",
-  priceUsd: "about US$7",
+  /* Prices shown on the page, in US dollars. Visitors can still pay in their
+     own currency at checkout. Keep them in line with the checkout price. */
+  price: "$7",
+  oldPrice: "$11",
   discount: "-40%",
 
-  /* Customer service. The WhatsApp button opens a chat with you;
-     your phone number is never written on the page. */
-  whatsappUrl: "https://wa.me/message/TSRPPLLZPMM3N1",
+  /* Offer countdown: restarts by itself every `offerHours` hours, counted
+     from `offerStart`, so every visitor sees the same time left. */
+  offerHours: 48,
+  offerStart: "2026-10-11T00:00:00+01:00",
+
+  /* Customer service. The WhatsApp buttons open a chat with this number;
+     the number itself is never written on the page. */
+  whatsappNumber: "243823226790",           // international format, digits only
   email: "libraryonline65@gmail.com",
 
   /* WhatsApp group where members receive free Christian books */
@@ -32,7 +37,7 @@ window.FUNNEL_CONFIG = {
   /* Optional: Meta (Facebook) Pixel for your ads, e.g. "123456789012345".
      Leave it empty to switch tracking off. When it is filled in, the pages send
      PageView, InitiateCheckout (click on a buy button) and Purchase (thank-you page).
-     purchaseValue is the book price in purchaseCurrency (15,000 CDF ≈ 6.7 USD). */
+     purchaseValue is what one sale is worth in purchaseCurrency. */
   metaPixelId: "",
   purchaseValue: 6.7,
   purchaseCurrency: "USD"

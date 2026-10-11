@@ -17,15 +17,21 @@ Tout se règle dans **un seul fichier : `assets/js/config.js`**. Les deux pages 
 | Réglage | Valeur actuelle |
 | --- | --- |
 | `checkoutUrl` (lien de tous les boutons d'achat) | `https://livresenligne.mychariow.shop/prd_dlcz1mir/checkout` |
-| `price` / `oldPrice` / `discount` | `15,000 CDF` / `25,000 CDF` / `-40%` |
-| `priceUsd` | `about US$7` (taux Chariow : 15 000 CDF ≈ 6,7 $) |
-| `whatsappUrl` | `https://wa.me/message/TSRPPLLZPMM3N1` (le numéro n'apparaît jamais sur la page) |
+| `price` / `oldPrice` / `discount` | `$7` / `$11` / `-40%` |
+| `offerHours` / `offerStart` | `48` / `2026-10-11T00:00:00+01:00` (minuit, heure de Kinshasa) |
+| `whatsappNumber` | `243823226790` (sert aux boutons WhatsApp, jamais écrit sur la page) |
 | `whatsappGroupUrl` | groupe WhatsApp des livres chrétiens gratuits |
 | `email` | `libraryonline65@gmail.com` |
 | `booklineUrl` | `https://bookline.digital` |
 | `metaPixelId` | vide (pixel Facebook désactivé) |
 
-Si vous changez le prix sur Chariow, changez-le aussi ici pour que la page affiche le même montant.
+Les prix sont affichés en dollars. Le visiteur peut payer dans la monnaie de son choix : Chariow convertit automatiquement. Sur Chariow, le livre coûte 15 000 CDF au lieu de 25 000, soit environ 6,7 $ et 11,1 $ au taux Chariow du 11 octobre 2026. Si vous changez le prix sur Chariow ou si le taux bouge beaucoup, mettez `price` et `oldPrice` à jour.
+
+## Compte à rebours de 48 h
+
+La page affiche « Offer ends in » avec un compte à rebours de 48 h, en haut de page et près de chaque bouton d'achat. Quand il arrive à zéro, un nouveau cycle de 48 h commence tout seul. Tous les visiteurs voient le même temps restant, car les cycles partent de la date `offerStart`.
+
+Pour que le compte à rebours corresponde à un vrai prix promotionnel, réglez sur Chariow le prix promo du produit sur la même période de 48 h, avec le renouvellement automatique activé.
 
 ## Relier Chariow à la page de remerciement
 

@@ -10,13 +10,25 @@
     Array.prototype.forEach.call(doc.querySelectorAll(selector), fn);
   }
 
+  function whatsappLink(message) {
+    var number = String(C.whatsappNumber || "").replace(/\D/g, "");
+    if (!number) return "";
+    return "https://wa.me/" + number + (message ? "?text=" + encodeURIComponent(message) : "");
+  }
+
   /* ---------- Links and text ---------- */
 
   if (C.checkoutUrl) {
     each("[data-cta]", function (a) { a.href = C.checkoutUrl; });
   }
 
-  // data-link="whatsappUrl" takes its address from the setting of the same name.
+  // WhatsApp links open the chat with a ready-made first message.
+  each("[data-whatsapp]", function (a) {
+    var link = whatsappLink(a.getAttribute("data-whatsapp"));
+    if (link) a.href = link;
+  });
+
+  // data-link="booklineUrl" takes its address from the setting of the same name.
   each("[data-link]", function (a) {
     var url = C[a.getAttribute("data-link")];
     if (url) a.href = url;
@@ -35,6 +47,29 @@
   });
 
   each("[data-year]", function (el) { el.textContent = String(new Date().getFullYear()); });
+
+  /* ---------- Offer countdown ----------
+     Cycles of offerHours counted from offerStart: when one ends, the next
+     one starts, and every visitor sees the same time left. */
+
+  var unitEls = doc.querySelectorAll("[data-cd]");
+  var clockEls = doc.querySelectorAll("[data-countdown]");
+  if (unitEls.length || clockEls.length) {
+    var cycle = (Number(C.offerHours) || 48) * 3600000;
+    var start = Date.parse(C.offerStart || "");
+    if (isNaN(start)) start = 0;
+
+    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+    var tick = function () {
+      var left = cycle - (((Date.now() - start) % cycle) + cycle) % cycle;
+      var secs = Math.floor(left / 1000);
+      var parts = { h: pad(Math.floor(secs / 3600)), m: pad(Math.floor(secs % 3600 / 60)), s: pad(secs % 60) };
+      Array.prototype.forEach.call(unitEls, function (el) { el.textContent = parts[el.getAttribute("data-cd")]; });
+      Array.prototype.forEach.call(clockEls, function (el) { el.textContent = parts.h + ":" + parts.m + ":" + parts.s; });
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
 
   /* ---------- Sticky buy bar ----------
      Appears once the visitor has scrolled past the hero's buy button,

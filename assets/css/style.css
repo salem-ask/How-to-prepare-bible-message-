@@ -247,7 +247,7 @@ h1, h2, h3 {
   text-decoration-color: var(--magenta);
   text-decoration-thickness: 2px;
 }
-.price-usd { font-size: var(--fs-sm); color: var(--ink-soft); }
+.price-note { font-size: var(--fs-sm); color: var(--ink-soft); }
 .tag {
   align-self: center;
   padding: .2rem .5rem;
@@ -259,7 +259,53 @@ h1, h2, h3 {
   letter-spacing: .02em;
 }
 .dark .price-now { color: var(--on-dark); }
-.dark .price-was, .dark .price-usd { color: var(--on-dark-soft); }
+.dark .price-was, .dark .price-note { color: var(--on-dark-soft); }
+
+/* ---------- Countdown ---------- */
+
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .9rem;
+}
+.countdown-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--magenta);
+}
+.countdown-units { display: inline-flex; gap: .4rem; }
+.cd-unit { display: flex; flex-direction: column; align-items: center; gap: .2rem; }
+.cd-unit b {
+  min-width: 2.7rem;
+  padding: .4rem .3rem;
+  border-radius: 8px;
+  background: var(--navy);
+  color: var(--on-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.cd-unit small {
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.dark .countdown-label { color: var(--gold); }
+.dark .cd-unit b { background: var(--on-dark); color: var(--navy); }
+.dark .cd-unit small { color: var(--on-dark-soft); }
+.offer-card .countdown-label { color: var(--magenta); }
+.offer-card .cd-unit b { background: var(--navy); color: var(--on-dark); }
+.offer-card .cd-unit small { color: var(--ink-soft); }
+
+.topbar-timer { font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
 
 /* ---------- Top bar and header ---------- */
 
@@ -637,7 +683,7 @@ h1, h2, h3 {
 }
 .offer-thumb img { width: min(58%, 210px); }
 .offer-card .price-now { color: var(--navy); }
-.offer-card .price-was, .offer-card .price-usd { color: var(--ink-soft); }
+.offer-card .price-was, .offer-card .price-note { color: var(--ink-soft); }
 .offer-card :focus-visible { outline-color: var(--royal); }
 .offer-title { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1.2; color: var(--navy); }
 .offer-meta { font-size: var(--fs-sm); color: var(--ink-soft); }
