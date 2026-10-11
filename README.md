@@ -6,7 +6,9 @@ Tunnel de vente en anglais pour le livre *How to Prepare Bible Messages* de Jame
 
 1. **`index.html`** : la page de vente. Chaque bouton « Get the book » envoie vers le paiement Chariow.
 2. **Paiement Chariow** : Mobile Money ou carte, dans la devise du client. Chariow livre le PDF.
-3. **`thank-you.html`** : la page de remerciement. Elle donne les étapes de téléchargement, l'aide WhatsApp, le groupe WhatsApp des livres gratuits et une recommandation (*Chronological Bible Handbook*).
+3. **`thank-you.html`** : la page de remerciement. Elle donne les étapes de téléchargement, l'aide WhatsApp, le groupe WhatsApp des livres gratuits, une recommandation (*Chronological Bible Handbook*) et un lien vers bookline.digital.
+
+Les visiteurs qui ne sont pas prêts à acheter trouvent, en bas de la page de vente, une section pour rejoindre le groupe WhatsApp des livres chrétiens gratuits.
 
 ## Modifier le lien, les prix ou les contacts
 
@@ -15,11 +17,12 @@ Tout se règle dans **un seul fichier : `assets/js/config.js`**. Les deux pages 
 | Réglage | Valeur actuelle |
 | --- | --- |
 | `checkoutUrl` (lien de tous les boutons d'achat) | `https://livresenligne.mychariow.shop/prd_dlcz1mir/checkout` |
-| `price` / `oldPrice` / `discount` | `18,000 CDF` / `35,000 CDF` / `-49%` |
-| `priceUsd` | `about US$8` (taux Chariow : 18 000 CDF ≈ 8 $) |
-| `whatsappNumber` | `243997155350` |
-| `whatsappGroupUrl` | groupe WhatsApp des livres gratuits |
+| `price` / `oldPrice` / `discount` | `15,000 CDF` / `25,000 CDF` / `-40%` |
+| `priceUsd` | `about US$7` (taux Chariow : 15 000 CDF ≈ 6,7 $) |
+| `whatsappUrl` | `https://wa.me/message/TSRPPLLZPMM3N1` (le numéro n'apparaît jamais sur la page) |
+| `whatsappGroupUrl` | groupe WhatsApp des livres chrétiens gratuits |
 | `email` | `libraryonline65@gmail.com` |
+| `booklineUrl` | `https://bookline.digital` |
 | `metaPixelId` | vide (pixel Facebook désactivé) |
 
 Si vous changez le prix sur Chariow, changez-le aussi ici pour que la page affiche le même montant.
@@ -43,7 +46,7 @@ Pour mesurer vos publicités, mettez l'identifiant de votre pixel dans `metaPixe
 
 - `PageView` sur les deux pages ;
 - `InitiateCheckout` quand un visiteur clique sur un bouton d'achat ;
-- `Purchase` (8 USD) à l'arrivée sur la page de remerciement.
+- `Purchase` (6,7 USD, réglable avec `purchaseValue`) à l'arrivée sur la page de remerciement.
 
 ## À vérifier avant de lancer la publicité
 

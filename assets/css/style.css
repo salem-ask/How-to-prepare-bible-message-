@@ -729,6 +729,25 @@ h1, h2, h3 {
 .faq-list details[open] summary::after { transform: translateY(-25%) rotate(-135deg); }
 .faq-answer { display: flex; flex-direction: column; gap: .6rem; padding-bottom: 1.2rem; color: var(--ink-soft); }
 
+/* ---------- Free books group ---------- */
+
+.group { background: var(--paper-warm); }
+.group-box { display: grid; gap: 1.25rem; align-items: start; }
+.group-box .btn { align-self: flex-start; }
+.group-mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: var(--white);
+}
+.group-mark svg { width: 30px; height: 30px; }
+@media (min-width: 760px) {
+  .group-box { grid-template-columns: auto minmax(0, 1fr); gap: 2rem; }
+}
+
 /* ---------- Final call ---------- */
 
 .final-grid { display: grid; gap: 2.5rem; align-items: center; }

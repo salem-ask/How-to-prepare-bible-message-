@@ -11,26 +11,29 @@ window.FUNNEL_CONFIG = {
   checkoutUrl: "https://livresenligne.mychariow.shop/prd_dlcz1mir/checkout",
 
   /* Prices shown on the page. Keep them identical to the prices on Chariow. */
-  price: "18,000 CDF",
-  oldPrice: "35,000 CDF",
-  priceUsd: "about US$8",
-  discount: "-49%",
+  price: "15,000 CDF",
+  oldPrice: "25,000 CDF",
+  priceUsd: "about US$7",
+  discount: "-40%",
 
-  /* Customer service */
-  whatsappNumber: "243997155350",          // international format, digits only
-  whatsappDisplay: "+243 997 155 350",     // how the number is written on the page
-  whatsappGroupUrl: "https://chat.whatsapp.com/DRFUqxZkOjX3fzXEaGObV3",
+  /* Customer service. The WhatsApp button opens a chat with you;
+     your phone number is never written on the page. */
+  whatsappUrl: "https://wa.me/message/TSRPPLLZPMM3N1",
   email: "libraryonline65@gmail.com",
 
+  /* WhatsApp group where members receive free Christian books */
+  whatsappGroupUrl: "https://chat.whatsapp.com/DRFUqxZkOjX3fzXEaGObV3?s=cl&p=a&mlu=4&ilr=4",
+
   /* Other links */
-  storeUrl: "https://livresenligne.mychariow.shop",
+  booklineUrl: "https://bookline.digital",
   frenchEditionUrl: "https://livresenligne.mychariow.shop/prd_b77u61",
   upsellUrl: "https://livresenligne.mychariow.shop/prd_2j3myxax",
 
   /* Optional: Meta (Facebook) Pixel for your ads, e.g. "123456789012345".
      Leave it empty to switch tracking off. When it is filled in, the pages send
-     PageView, InitiateCheckout (click on a buy button) and Purchase (thank-you page). */
+     PageView, InitiateCheckout (click on a buy button) and Purchase (thank-you page).
+     purchaseValue is the book price in purchaseCurrency (15,000 CDF ≈ 6.7 USD). */
   metaPixelId: "",
-  purchaseValue: 8,
+  purchaseValue: 6.7,
   purchaseCurrency: "USD"
 };

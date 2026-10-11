@@ -10,25 +10,13 @@
     Array.prototype.forEach.call(doc.querySelectorAll(selector), fn);
   }
 
-  function whatsappLink(message) {
-    var number = String(C.whatsappNumber || "").replace(/\D/g, "");
-    if (!number) return "";
-    return "https://wa.me/" + number + (message ? "?text=" + encodeURIComponent(message) : "");
-  }
-
   /* ---------- Links and text ---------- */
 
   if (C.checkoutUrl) {
     each("[data-cta]", function (a) { a.href = C.checkoutUrl; });
   }
 
-  // WhatsApp links open the chat with a ready-made first message.
-  each("[data-whatsapp]", function (a) {
-    var link = whatsappLink(a.getAttribute("data-whatsapp"));
-    if (link) a.href = link;
-  });
-
-  // data-link="storeUrl" takes its address from the setting of the same name.
+  // data-link="whatsappUrl" takes its address from the setting of the same name.
   each("[data-link]", function (a) {
     var url = C[a.getAttribute("data-link")];
     if (url) a.href = url;
