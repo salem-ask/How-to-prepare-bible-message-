@@ -35,20 +35,23 @@ Pour que le compte à rebours corresponde à un vrai prix promotionnel, réglez 
 
 ## Relier Chariow à la page de remerciement
 
-Une fois le site en ligne, ouvrez le produit sur Chariow et collez l'adresse de `thank-you.html` dans le champ de redirection après achat (*redirect URL*). Le client y arrive juste après son paiement.
+Ouvrez le produit sur Chariow et collez `https://howtopreparebiblemessage.vercel.app/thank-you.html` dans le champ de redirection après achat (*redirect URL*). Le client y arrive juste après son paiement, et le pixel Facebook compte l'achat.
 
-## Mettre le site en ligne
+## Le site en ligne
 
-Le site est fait de fichiers simples (HTML, CSS, JS, images). Aucune installation n'est nécessaire.
+Le site est en ligne sur **https://howtopreparebiblemessage.vercel.app** (Vercel). Vercel le met à jour tout seul à chaque modification envoyée sur la branche principale du dépôt GitHub.
 
-- **GitHub Pages (gratuit)** : dans le dépôt, *Settings → Pages → Deploy from a branch*, choisissez la branche et le dossier `/ (root)`. L'adresse sera du type `https://salem-ask.github.io/How-to-prepare-bible-message-/`.
-- **Hostinger ou un autre hébergeur** : envoyez tout le contenu du dossier (avec le dossier `assets`) à la racine du site.
-
-Après la mise en ligne, remplacez `assets/img/og-image.jpg` dans la balise `og:image` de `index.html` par l'adresse complète de l'image (par exemple `https://votre-site.com/assets/img/og-image.jpg`). Facebook et WhatsApp afficheront alors le bon aperçu quand vous partagerez le lien.
+Le site est fait de fichiers simples (HTML, CSS, JS, images). Pour l'héberger ailleurs (Hostinger par exemple), envoyez tout le contenu du dossier, avec le dossier `assets`, à la racine du site.
 
 ## Pixel Facebook (optionnel)
 
-Pour mesurer vos publicités, mettez l'identifiant de votre pixel dans `metaPixelId`. La page envoie alors :
+Le pixel permet à Meta de voir les visites, les clics sur « Get the book » et les achats venant de vos publicités. Sans lui, Meta affiche « Non associé à howtopreparebiblemessage.vercel.app » et ne peut pas optimiser une campagne de ventes.
+
+1. Dans le **Gestionnaire d'événements** de Meta, ouvrez votre pixel (ensemble de données) et copiez son identifiant (15 ou 16 chiffres).
+2. Collez-le dans `metaPixelId` du fichier `assets/js/config.js`, entre les guillemets. Vercel publie la modification en une minute environ.
+3. Dans le Gestionnaire d'événements, ouvrez **Tester les événements**, saisissez l'adresse du site et visitez-le : `PageView` doit apparaître. Le message « Non associé » disparaît quand Meta a reçu des événements du site.
+
+La page envoie alors :
 
 - `PageView` sur les deux pages ;
 - `InitiateCheckout` quand un visiteur clique sur un bouton d'achat ;
