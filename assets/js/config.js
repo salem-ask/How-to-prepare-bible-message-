@@ -34,11 +34,14 @@ window.FUNNEL_CONFIG = {
   frenchEditionUrl: "https://livresenligne.mychariow.shop/prd_b77u61",
   upsellUrl: "https://livresenligne.mychariow.shop/prd_2j3myxax",
 
-  /* Optional: Meta (Facebook) Pixel for your ads, e.g. "123456789012345".
-     Leave it empty to switch tracking off. When it is filled in, the pages send
-     PageView, InitiateCheckout (click on a buy button) and Purchase (thank-you page).
-     purchaseValue is what one sale is worth in purchaseCurrency. */
-  metaPixelId: "",
+  /* Meta (Facebook) Pixel for your ads. Leave it empty to switch tracking off.
+     The sales page sends PageView and ViewContent, plus AddToCart when a visitor
+     clicks a buy button. The checkout page reports the checkout and the purchase
+     itself when the same pixel is set in the store's tracking settings, so the
+     thank-you page sends Purchase only if sendPurchase is true (avoids counting
+     each sale twice). purchaseValue is what one sale is worth in purchaseCurrency. */
+  metaPixelId: "3681099995362477",
+  sendPurchase: false,
   purchaseValue: 6.7,
   purchaseCurrency: "USD"
 };

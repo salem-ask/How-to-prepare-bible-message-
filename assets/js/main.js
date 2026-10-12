@@ -106,7 +106,10 @@
     }
   }
 
-  /* ---------- Optional Meta (Facebook) Pixel ---------- */
+  /* ---------- Meta (Facebook) Pixel ----------
+     Sales page: PageView, ViewContent, and AddToCart on a buy click.
+     The checkout reports the checkout and the purchase itself, so Purchase
+     is sent from the thank-you page only when sendPurchase is true. */
 
   if (C.metaPixelId) {
     /* Meta Pixel base code */
@@ -125,10 +128,13 @@
       content_name: "How to Prepare Bible Messages"
     };
 
+    var page = doc.body.getAttribute("data-page");
+
     window.fbq("init", String(C.metaPixelId));
     window.fbq("track", "PageView");
+    if (page === "sales") window.fbq("track", "ViewContent", eventData);
 
-    if (doc.body.getAttribute("data-page") === "thank-you") {
+    if (page === "thank-you" && C.sendPurchase) {
       // One Purchase per browser session, so a page refresh is not counted twice.
       var sent = false;
       try { sent = window.sessionStorage.getItem("hpbm-purchase") === "1"; } catch (e) { /* storage blocked */ }
@@ -141,7 +147,7 @@
     doc.addEventListener("click", function (event) {
       var link = event.target.closest ? event.target.closest("[data-cta]") : null;
       if (!link) return;
-      window.fbq("track", "InitiateCheckout", eventData);
+      window.fbq("track", "AddToCart", eventData);
 
       // Give the pixel a moment to send before leaving the page (plain clicks only).
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

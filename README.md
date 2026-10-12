@@ -23,7 +23,7 @@ Tout se règle dans **un seul fichier : `assets/js/config.js`**. Les deux pages 
 | `whatsappGroupUrl` | groupe WhatsApp des livres chrétiens gratuits |
 | `email` | `libraryonline65@gmail.com` |
 | `booklineUrl` | `https://bookline.digital` |
-| `metaPixelId` | vide (pixel Facebook désactivé) |
+| `metaPixelId` / `sendPurchase` | `3681099995362477` (pixel « librairie-chariow ») / `false` |
 
 Les prix sont affichés en dollars. Le visiteur peut payer dans la monnaie de son choix : Chariow convertit automatiquement. Sur Chariow, le livre coûte 15 000 CDF au lieu de 25 000, soit environ 6,7 $ et 11,1 $ au taux Chariow du 11 octobre 2026. Si vous changez le prix sur Chariow ou si le taux bouge beaucoup, mettez `price` et `oldPrice` à jour.
 
@@ -43,19 +43,19 @@ Le site est en ligne sur **https://howtopreparebiblemessage.vercel.app** (Vercel
 
 Le site est fait de fichiers simples (HTML, CSS, JS, images). Pour l'héberger ailleurs (Hostinger par exemple), envoyez tout le contenu du dossier, avec le dossier `assets`, à la racine du site.
 
-## Pixel Facebook (optionnel)
+## Pixel Facebook
 
-Le pixel permet à Meta de voir les visites, les clics sur « Get the book » et les achats venant de vos publicités. Sans lui, Meta affiche « Non associé à howtopreparebiblemessage.vercel.app » et ne peut pas optimiser une campagne de ventes.
+Le pixel **3681099995362477** (« librairie-chariow ») est installé sur les deux pages. Il permet à Meta de voir les visites et les clics sur « Get the book » venant de vos publicités, et d'optimiser vos campagnes.
 
-1. Dans le **Gestionnaire d'événements** de Meta, ouvrez votre pixel (ensemble de données) et copiez son identifiant (15 ou 16 chiffres).
-2. Collez-le dans `metaPixelId` du fichier `assets/js/config.js`, entre les guillemets. Vercel publie la modification en une minute environ.
-3. Dans le Gestionnaire d'événements, ouvrez **Tester les événements**, saisissez l'adresse du site et visitez-le : `PageView` doit apparaître. Le message « Non associé » disparaît quand Meta a reçu des événements du site.
-
-La page envoie alors :
+Événements envoyés par le tunnel :
 
 - `PageView` sur les deux pages ;
-- `InitiateCheckout` quand un visiteur clique sur un bouton d'achat ;
-- `Purchase` (6,7 USD, réglable avec `purchaseValue`) à l'arrivée sur la page de remerciement.
+- `ViewContent` à l'ouverture de la page de vente ;
+- `AddToCart` (« Ajout au panier ») quand un visiteur clique sur un bouton d'achat.
+
+Le paiement et l'achat (`InitiateCheckout`, `Purchase`) sont envoyés par Chariow, si le même identifiant est réglé dans Chariow → Paramètres → Marketing → Pixels & Tracking. C'est pour cela que `sendPurchase` vaut `false` : la page de remerciement n'envoie pas d'achat, sinon chaque vente serait comptée deux fois.
+
+Vérification : dans le Gestionnaire d'événements, ouvrez le pixel. Les événements doivent arriver de `howtopreparebiblemessage.vercel.app` (visites, ajouts au panier) et de votre boutique Chariow (achats). Si aucun `Purchase` n'apparaît après une vente, ajoutez l'identifiant du pixel dans Chariow, ou passez `sendPurchase` à `true` (la redirection vers la page de remerciement doit alors être réglée sur Chariow).
 
 ## À vérifier avant de lancer la publicité
 
