@@ -35,13 +35,14 @@ Pour que le compte à rebours corresponde à un vrai prix promotionnel, réglez 
 
 ## Relier Chariow à la page de remerciement
 
-Ouvrez le produit sur Chariow et collez `https://howtopreparebiblemessage.vercel.app/thank-you.html` dans le champ de redirection après achat (*redirect URL*). Le client y arrive juste après son paiement, et le pixel Facebook compte l'achat.
+Ouvrez le produit sur Chariow et collez `https://biblemessages.bookline.digital/thank-you.html` dans le champ de redirection après achat (*redirect URL*). Le client y arrive juste après son paiement, et le pixel Facebook compte l'achat.
 
 ## Le site en ligne
 
-Le site est en ligne sur **https://howtopreparebiblemessage.vercel.app** (Vercel). Vercel le met à jour tout seul à chaque modification envoyée sur la branche principale du dépôt GitHub.
+- **Adresse principale : https://biblemessages.bookline.digital** (Hostinger, site « biblemessages.bookline.digital » dans hPanel). C'est le lien à mettre dans les publicités.
+- Copie de secours : https://howtopreparebiblemessage.vercel.app (Vercel, mise à jour automatique à chaque envoi sur GitHub).
 
-Le site est fait de fichiers simples (HTML, CSS, JS, images). Pour l'héberger ailleurs (Hostinger par exemple), envoyez tout le contenu du dossier, avec le dossier `assets`, à la racine du site.
+Le site est fait de fichiers simples (HTML, CSS, JS, images). Hostinger reçoit le site sous forme d'archive : `deploy/site.zip`, créée à partir de `index.html`, `thank-you.html`, `.htaccess` et du dossier `assets`. Après chaque modification, l'archive est refaite et envoyée sur GitHub, puis Hostinger récupère le dépôt et décompresse l'archive à la racine du site.
 
 ## Pixel Facebook
 
@@ -55,7 +56,7 @@ Le pixel **3681099995362477** (« librairie-chariow ») est installé sur les de
 
 Le paiement et l'achat (`InitiateCheckout`, `Purchase`) sont envoyés par Chariow, si le même identifiant est réglé dans Chariow → Paramètres → Marketing → Pixels & Tracking. C'est pour cela que `sendPurchase` vaut `false` : la page de remerciement n'envoie pas d'achat, sinon chaque vente serait comptée deux fois.
 
-Vérification : dans le Gestionnaire d'événements, ouvrez le pixel. Les événements doivent arriver de `howtopreparebiblemessage.vercel.app` (visites, ajouts au panier) et de votre boutique Chariow (achats). Si aucun `Purchase` n'apparaît après une vente, ajoutez l'identifiant du pixel dans Chariow, ou passez `sendPurchase` à `true` (la redirection vers la page de remerciement doit alors être réglée sur Chariow).
+Vérification : dans le Gestionnaire d'événements, ouvrez le pixel. Les événements doivent arriver de `biblemessages.bookline.digital` (visites, ajouts au panier) et de votre boutique Chariow (achats). Si aucun `Purchase` n'apparaît après une vente, ajoutez l'identifiant du pixel dans Chariow, ou passez `sendPurchase` à `true` (la redirection vers la page de remerciement doit alors être réglée sur Chariow).
 
 ## À vérifier avant de lancer la publicité
 
@@ -73,4 +74,6 @@ assets/js/config.js   réglages (lien, prix, contacts, pixel)
 assets/js/main.js     fonctionnement (ne pas modifier)
 assets/css/style.css  design
 assets/img/           affiches optimisées et image de partage
+.htaccess             réglages du serveur Hostinger (cache, page d'accueil)
+deploy/site.zip       archive du site envoyée à Hostinger
 ```
